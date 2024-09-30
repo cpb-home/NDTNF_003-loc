@@ -1,8 +1,13 @@
-const BookRepository = reqire('../classes/BooksRepository');
+const BookRepository = require('../classes/BooksRepository');
 
 const container = {
-  BookRepository: new BookRepository
+  BookRepository: BookRepository,
+  get(repoName) {
+    return new repoName;
+  }
 }
 
 // container.bind(BooksRepository).toSelf()
-const bookRepository = container.BookRepository;
+container.bind(BookRepository).toSelf();
+
+module.exports = container;
