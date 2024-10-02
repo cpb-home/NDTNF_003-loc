@@ -1,4 +1,6 @@
 const Books = require('../models/books');
+const inversify = require('inversify');
+require('reflect-metadata');
 
 class BooksRepository {
   async createBook(book) {
@@ -46,5 +48,7 @@ class BooksRepository {
     return deleted;
   }
 }
+
+inversify.decorate(inversify.injectable(), BooksRepository);
 
 module.exports = BooksRepository;
